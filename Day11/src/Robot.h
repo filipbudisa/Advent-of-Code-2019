@@ -24,6 +24,7 @@ public:
 	void reset();
 
 	void print();
+	void printPainted();
 
 	void inputReceived(int data) override;
 	void noData() override;
@@ -41,6 +42,8 @@ private:
 	std::set<std::pair<int, int>> hullWasPainted;
 
 	short state = 0; // 0 - awaiting first bit, 1 - awaiting second bit
+
+	void printCollection(std::set<std::pair<int, int>>& collection);
 };
 
 

@@ -35,13 +35,17 @@ int main(){
 	Robot robot(c);
 
 	c.run();
-	printf("[ %d ]\n", robot.hullPainted());
+	unsigned hullPainted = robot.hullPainted();
+	robot.print();
+	robot.printPainted();
 
 	c.reset(data);
 	robot.reset();
 
 	robot.paint(1);
 	c.run();
+
+	printf("\n[ %d ]\n", hullPainted);
 	robot.print();
 
 	return 0;

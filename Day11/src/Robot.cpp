@@ -60,20 +60,28 @@ void Robot::reset(){
 }
 
 void Robot::print(){
-	int xmin = hullWhite.begin()->first, ymin = hullWhite.begin()->second;
-	int xmax = hullWhite.begin()->first, ymax = hullWhite.begin()->second;
+	printCollection(hullWhite);
+}
 
-	for(auto p : hullWhite){
+void Robot::printPainted(){
+	printCollection(hullWasPainted);
+}
+
+void Robot::printCollection(std::set<std::pair<int, int>>& collection){
+	int xmin = collection.begin()->first, ymin = collection.begin()->second;
+	int xmax = collection.begin()->first, ymax = collection.begin()->second;
+
+	for(auto p : collection){
 		if(p.first < xmin) xmin = p.first;
-		if(p.second < ymin) xmin = p.first;
+		if(p.second < ymin) ymin = p.second;
 		if(p.first > xmax) xmax = p.first;
 		if(p.second > ymax) ymax = p.second;
 	}
 
-	for(int i = xmax+1; i >= xmin; i--){
+	for(int i = xmax+1; i >= xmin-1; i--){
 		for(int j = ymin-1; j <= ymax; j++){
-			if(hullWhite.count(std::make_pair(i, j))){
-				printf("[]");
+			if(collection.count(std::make_pair(i, j))){
+				printf("##");
 			}else{
 				printf("  ");
 			}
